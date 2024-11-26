@@ -1,0 +1,77 @@
+<div #container class="rete-container" (contextmenu)="openContextMenu($event)">
+  <!-- Controles Centralizados no Topo -->
+  <div class="top-center-controls">
+    <button class="control-button" title="Graph View">
+      <svg class="icon" viewBox="0 0 16 16" fill="none" color="#808080">
+        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+          d="M4 2.5H2a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5ZM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2Zm12 1.5h-2a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5ZM12 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-2Zm2 9.5h-2a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5ZM12 9a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2ZM7.25 4.75H6v-1.5h4v1.5H8.75V10c0 .69.56 1.25 1.25 1.25v1.5A2.75 2.75 0 0 1 7.25 10V4.75Z">
+        </path>
+      </svg>
+    </button>
+    <button class="control-button" title="Tree View">
+      <svg class="icon" viewBox="0 0 16 16" fill="none" color="#808080">
+        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+          d="M5.5 2.5h-4v1h4v-1ZM1.5 1A1.5 1.5 0 0 0 0 2.5v1A1.5 1.5 0 0 0 1.5 5h4A1.5 1.5 0 0 0 7 3.5v-1A1.5 1.5 0 0 0 5.5 1h-4Zm4 6.5h-4v1h4v-1ZM1.5 6A1.5 1.5 0 0 0 0 7.5v1A1.5 1.5 0 0 0 1.5 10h4A1.5 1.5 0 0 0 7 8.5v-1A1.5 1.5 0 0 0 5.5 6h-4Zm4 6.5h-4v1h4v-1Zm-4-1.5A1.5 1.5 0 0 0 0 12.5v1A1.5 1.5 0 0 0 1.5 15h4A1.5 1.5 0 0 0 7 13.5v-1A1.5 1.5 0 0 0 5.5 11h-4Zm13-3.5h-4v1h4v-1Zm-4-1.5A1.5 1.5 0 0 0 9 7.5v1a1.5 1.5 0 0 0 1.5 1.5h4A1.5 1.5 0 0 0 16 8.5v-1A1.5 1.5 0 0 0 14.5 6h-4Zm4 6.5h-4v1h4v-1Zm-4-1.5A1.5 1.5 0 0 0 9 12.5v1a1.5 1.5 0 0 0 1.5 1.5h4a1.5 1.5 0 0 0 1.5-1.5v-1a1.5 1.5 0 0 0-1.5-1.5h-4Z">
+        </path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Controles no Canto Inferior Esquerdo -->
+  <div class="bottom-left-controls">
+    <div class="control-card">
+      <button class="control-button" title="Zoom Out" (click)="zoomOut()">
+        <svg class="icon" viewBox="0 0 16 16" fill="none">
+          <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
+        </svg>
+      </button>
+      <button class="control-button" title="Zoom to 100%" (click)="zoomTo100()">{{zoomPercentage}}</button>
+      <button class="control-button" title="Zoom In" (click)="zoomIn()" [disabled]="!zoomInEnabled">
+        <svg class="icon" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z">
+          </path>
+        </svg>
+      </button>
+      <button class="control-button" title="Fit View" (click)="fitView()">
+        <svg viewBox="0 0 16 16" class="icon">
+          <path
+            d="M1.75 10a.75.75 0 0 1 .75.75v2.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 0 1.5h-2.5A1.75 1.75 0 0 1 1 13.25v-2.5a.75.75 0 0 1 .75-.75Zm12.5 0a.75.75 0 0 1 .75.75v2.5A1.75 1.75 0 0 1 13.25 15h-2.5a.75.75 0 0 1 0-1.5h2.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 .75-.75ZM2.75 2.5a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0v-2.5C1 1.784 1.784 1 2.75 1h2.5a.75.75 0 0 1 0 1.5ZM10 1.75a.75.75 0 0 1 .75-.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.25.25 0 0 0-.25-.25h-2.5a.75.75 0 0 1-.75-.75Z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div class="control-card">
+      <button class="control-button" title="Auto Layout">
+        <svg viewBox="0 0 16 16" fill="none" class="icon">
+          <path
+            d="M1 2.885C1 1.845 1.844 1 2.885 1h2.692c1.04 0 1.885.844 1.885 1.885v2.692a1.885 1.885 0 0 1-1.885 1.885H2.885A1.885 1.885 0 0 1 1 5.577V2.885Zm7.538 0c0-1.04.845-1.885 1.885-1.885h2.692C14.155 1 15 1.844 15 2.885v2.692a1.885 1.885 0 0 1-1.885 1.885h-2.692a1.885 1.885 0 0 1-1.885-1.885V2.885Zm0 7.538c0-1.04.845-1.885 1.885-1.885h2.692c1.04 0 1.885.845 1.885 1.885v2.692A1.885 1.885 0 0 1 13.115 15h-2.692a1.885 1.885 0 0 1-1.885-1.885v-2.692ZM2.885 2.615a.27.27 0 0 0-.27.27v2.692c0 .149.121.27.27.27h2.692a.27.27 0 0 0 .27-.27V2.885a.27.27 0 0 0-.27-.27H2.885Zm7.538 0a.27.27 0 0 0-.27.27v2.692c0 .149.121.27.27.27h2.692a.27.27 0 0 0 .27-.27V2.885a.27.27 0 0 0-.27-.27h-2.692Zm0 7.539a.27.27 0 0 0-.27.27v2.691c0 .149.121.27.27.27h2.692a.27.27 0 0 0 .27-.27v-2.692a.27.27 0 0 0-.27-.27h-2.692Z">
+          </path>
+        </svg>
+      </button>
+      <button class="control-button" title="Expand All">
+        <svg viewBox="0 0 16 16" fill="none" class="icon">
+          <path
+            d="M8.025 13.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3ZM8.025 2c-.2 0-.4.1-.5.2l-3.3 3.3c-.3.3-.3.8 0 1.1.3.3.8.3 1.1 0l2.7-2.7 2.7 2.7c.3.3.8.3 1.1 0 .3-.3.3-.8 0-1.1l-3.2-3.2c-.2-.2-.4-.3-.6-.3Z">
+          </path>
+        </svg>
+      </button>
+      <button class="control-button" title="Collapse All">
+        <svg viewBox="0 0 16 16" fill="none" class="icon">
+          <path
+            d="M8.025 9c-.2 0-.4.1-.5.2l-3.3 3.3c-.3.3-.3.8 0 1.1.3.3.8.3 1.1 0l2.7-2.7 2.7 2.7c.3.3.8.3 1.1 0 .3-.3.3-.8 0-1.1l-3.2-3.2c-.2-.2-.4-.3-.6-.3Zm0-2.175c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1.3-.3.8-.3 1.1 0l2.7 2.7 2.7-2.7c.3-.3.8-.3 1.1 0 .3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z">
+          </path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Botão do Mini Mapa -->
+  <button *ngIf="false" class="mini-map" title="Mini Map">
+    <svg viewBox="0 0 16 16" fill="none" class="icon">
+      <path
+        d="M14.461 2.909a.751.751 0 0 0-.643-.136l-3.73.932-3.75-1.875a.75.75 0 0 0-.518-.057l-4 1a.75.75 0 0 0-.57.727v9a.75.75 0 0 0 .932.727l3.73-.932 3.75 1.875c.16.08.344.1.518.057l4-1a.75.75 0 0 0 .57-.727v-9a.749.749 0 0 0-.289-.591Zm-7.711.805 2.5 1.25v7.322l-2.5-1.25V3.714Zm-4 .375 2.5-.625v7.45l-2.5.625V4.09Zm10.5 7.825-2.5.625V5.086l2.5-.625v7.453Z">
+      </path>
+    </svg>
+  </button>
+</div>

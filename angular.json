@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/boxicons/css/boxicons.min.css",
               "src/styles.scss"
             ],
             "scripts": []

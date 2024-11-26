@@ -1,0 +1,10 @@
+<div class="context-menu" [ngStyle]="{ top: position.y + 'px', left: position.x + 'px' }">
+  <h3>{{ title }}</h3>
+  <ul>
+    <li *ngFor="let item of items" (click)="selectItem(item)">
+      <i [class]="item.icon"></i>
+      <span>{{ item.label }}</span>
+      <span class="new-badge" *ngIf="item.isNew">New</span>
+    </li>
+  </ul>
+</div>
