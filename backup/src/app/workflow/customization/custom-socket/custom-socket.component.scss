@@ -1,0 +1,20 @@
+:host {
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid #808080;
+  width: 12px; // Tamanho padrão
+  height: 12px; // Tamanho padrão
+  vertical-align: middle;
+  background: transparent; // Cor de fundo padrão
+  border-radius: 50%; // Faz o socket ser uma bolinha
+  transition: all 0.2s ease-in-out; // Suaviza as transições
+  z-index: 2;
+  box-sizing: border-box;
+
+  &:hover {
+    background: #a7f3d0; // Cor de fundo ao passar o mouse
+    border-color: #10b981; // Cor da borda ao passar o mouse
+    width: 16px; // Tamanho ao passar o mouse
+    height: 16px; // Tamanho ao passar o mouse
+  }
+}

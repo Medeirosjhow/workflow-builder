@@ -1,0 +1,77 @@
+<div #wrapper class="wrapper" *ngIf="!!data">
+  <!-- Socket de entrada -->
+  <div class="socket socket-input" refComponent *ngIf="data.getInputs().length > 0"
+    [data]="{type: 'socket', side: 'input', key: 'input', nodeId: data.id, payload: null}" [emit]="emit"
+    data-testid="input-socket">
+    <span class="socket-label"></span>
+  </div>
+  <!-- Componente do Nó -->
+  <article class="custom-node">
+    <header class="custom-node__header">
+      <!-- Tooltip: botão de ajuda ou informação -->
+      <button class="custom-node__tooltip" aria-label="Informação" aria-describedby="custom-node-info">
+        <svg fill="none" viewBox="0 0 16 16" class="icon">
+          <path
+            d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z">
+          </path>
+        </svg>
+      </button>
+
+      <!-- Nome do componente -->
+      <h2 class="custom-node__name">{{data.label}}</h2>
+
+      <!-- Botão para adicionar comentário -->
+      <button class="custom-node__btn custom-node__btn--add-comment" aria-label="Adicionar Comentário">
+        <svg fill="none" viewBox="0 0 16 16" class="icon _size-medium">
+          <path
+            d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1 0-1.5Z">
+          </path>
+        </svg>
+      </button>
+
+      <!-- Botão para minimizar -->
+      <button class="custom-node__btn custom-node__btn--minimize" aria-label="Minimizar" (click)="toggleCollapse()">
+        <svg *ngIf="!data.isCollapsed" fill="none" viewBox="0 0 16 16" class="icon">
+          <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
+        </svg>
+        <svg *ngIf="data.isCollapsed" fill="none" viewBox="0 0 16 16" class="icon">
+          <path
+            d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z">
+          </path>
+        </svg>
+      </button>
+
+      <!-- Botão para salvar -->
+      <button class="custom-node__btn custom-node__btn--save" aria-label="Salvar">
+        <svg viewBox="0 0 16 16" class="icon">
+          <path
+            d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z">
+          </path>
+          <path
+            d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z">
+          </path>
+        </svg>
+      </button>
+
+      <!-- Botão de ferramentas adicionais -->
+      <button class="custom-node__btn custom-node__btn--tools" aria-label="Ferramentas">
+        <svg fill="none" viewBox="0 0 16 16" class="icon">
+          <path
+            d="M3 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM6.5 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM13 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z">
+          </path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Conteúdo colapsável -->
+    <section class="custom-node__content" #content [style.height]="contentHeight" [class.collapsed]="data.isCollapsed">
+    </section>
+  </article>
+
+  <!-- Socket de saída -->
+  <div class="socket socket-output" refComponent *ngIf="data.getOutputs().length > 0"
+    [data]="{type: 'socket', side: 'output', key: 'output', nodeId: data.id, payload: null}" [emit]="emit"
+    data-testid="output-socket">
+    <span class="socket-label"></span>
+  </div>
+</div>

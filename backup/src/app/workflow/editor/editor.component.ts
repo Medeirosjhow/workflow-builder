@@ -100,16 +100,6 @@ export class EditorComponent implements AfterViewInit, OnDestroy {
     const angularRender = new AngularPlugin<Schemes, AreaExtra>({
       injector: this.injector,
     });
-    const contextMenu = new ContextMenuPlugin<Schemes>({
-      items: Presets.classic.setup([
-        ['Operator', () => new Node('Operator')],
-        ['Variable', () => new Node('Variable')],
-        ['Condition', () => new Node('Condition')],
-        ['Counter', () => new Node('Counter')],
-        ['regex', () => new Node('Regex')],
-        ['Value', () => new Node('Value')],
-      ]),
-    });
 
     // Use os plugins
     this.editor.use(this.area);

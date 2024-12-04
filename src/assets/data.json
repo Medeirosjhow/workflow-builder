@@ -1,0 +1,188 @@
+{
+  "id": "10212",
+  "nome": "B.SEC.Prevencao.Bloqueio_Cedente_BRADESCO",
+  "canal": {
+    "id": "1",
+    "name": "BKL",
+    "descrition": "description",
+    "estateId": "1",
+    "creationDate": "",
+    "creatorId": "",
+    "updateDate": "",
+    "updateUserId": "1"
+  },
+  "descricao": "Bloqueio de Cedentes do Bradesco",
+  "status": 1,
+  "versao": "1.0.0",
+  "prioridade": "10",
+  "dominio": {
+    "id": "1",
+    "name": "seguranca",
+    "descrition": "description",
+    "estateId": "1",
+    "creationDate": "",
+    "creatorId": "",
+    "updateDate": "",
+    "updateUserId": "1"
+  },
+  "conditions": {
+    "&E": [
+      { "Entradas.Operacao.EContabil": { "&IGUAL": true } },
+      {
+        "&OU": [
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}3380\\d{14}063333\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}3381\\d{14}097154\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}0263\\d{14}093000\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}3130\\d{14}063052\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2028\\d{14}520522\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}0313\\d{14}106155\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}4150\\d{14}002245\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}3381\\d{14}002091\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2370\\d{14}029998\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2370\\d{14}059551\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}4600\\d{14}999998\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}4600\\d{14}999999\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2372\\d{14}004092\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2011\\d{14}013353\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2042\\d{14}056469\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}1382\\d{14}160973\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}4150\\d{14}002114\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}3114\\d{14}176438\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}3391\\d{14}017479\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2574\\d{14}009800\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}4025\\d{14}000600\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}1229\\d{14}000469\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2372\\d{14}019000\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}1750\\d{14}376500\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2028\\d{14}000148\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}0313\\d{14}106155\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2372\\d{14}999902\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2372\\d{14}999903\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2372\\d{14}999904\\d{1}"
+            }
+          },
+          {
+            "Entradas.Operacao.Destino.Boleto.AreaDigitavel": {
+              "&CONTEM_STRING": "regex:\\d{19}2042\\d{14}119980\\d{1}"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ations": { "&ConfigurarFlagControle": { "Bloqueio.Score.Bloqueado": true } }
+}

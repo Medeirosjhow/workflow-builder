@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WorkflowModule } from './workflow/workflow.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WorkflowBuilderModule } from './workflow-builder/workflow-builder.module';
 
 @NgModule({
   declarations: [
@@ -13,9 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    WorkflowModule,
-    FormsModule,
-    ReactiveFormsModule
+    WorkflowBuilderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

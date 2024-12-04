@@ -1,0 +1,87 @@
+.custom-node {
+  width: 384px;
+  height: auto;
+  max-height: 1024px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: grab;
+  padding: 8px;
+  transition: outline 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 2px dashed rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.08), 0 4px 8px 0 rgba(55, 55, 55, 0.06);
+  outline: 1px dashed rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    outline: 2px dashed rgba(96, 165, 250, 0.4);
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  &__name {
+    flex: 1;
+  }
+
+  &__btn {
+    padding: 2px 4px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.039);
+    }
+  }
+
+  &__tooltip {
+    padding: 2px 4px;
+    border: none;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.039);
+    }
+  }
+
+  &__content {
+    overflow: hidden;
+    transition: height 0.3s ease;
+  }
+
+  &__content.collapsed {
+    height: 0;
+    padding: 0; // Opcional: pode remover o padding para recolher completamente
+  }
+}
+
+/* Ícones */
+.icon {
+  fill: #808080;
+  width: 16px;
+  height: 16px;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.socket {
+  position: absolute;
+  top: 0;
+  &-input {
+    left: -20px;
+  }
+  &-output {
+    right: -20px;
+  }
+}

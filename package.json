@@ -6,10 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "compodoc:build": "compodoc -p tsconfig.doc.json",
-    "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
-    "compodoc:serve": "compodoc -s"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +20,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@types/three": "^0.156.0",
-    "boxicons": "^2.1.4",
+    "bootstrap": "^5.3.3",
     "elkjs": "^0.8.2",
     "rete": "^2.0.5",
     "rete-angular-plugin": "^2.2.1",
@@ -47,7 +44,6 @@
     "@angular-devkit/build-angular": "^16.2.14",
     "@angular/cli": "^16.2.14",
     "@angular/compiler-cli": "^16.2.0",
-    "@compodoc/compodoc": "^1.1.26",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

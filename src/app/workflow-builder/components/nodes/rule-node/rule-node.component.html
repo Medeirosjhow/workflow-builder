@@ -1,0 +1,314 @@
+<div class="wrapper" *ngIf="data">
+  <!-- Socket de Entrada -->
+  <div
+    class="socket socket-input"
+    refComponent
+    *ngIf="data.getInputs().length > 0"
+    [data]="{
+      type: 'socket',
+      side: 'input',
+      key: 'input',
+      nodeId: data.id,
+      payload: null
+    }"
+    [emit]="emit"
+    data-testid="input-socket"
+  >
+    <span class="socket-label"></span>
+  </div>
+
+  <!-- Componente do Nó -->
+  <article class="custom-node">
+    <header class="custom-node__header">
+      <!-- Botão de Tooltip -->
+      <button
+        class="custom-node__tooltip"
+        aria-label="Informação"
+        aria-describedby="custom-node-info"
+      >
+        <svg fill="none" viewBox="0 0 16 16" class="icon">
+          <path
+            d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.249 1.249 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429Zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.036.036 0 0 0-.004-.009l-.006-.006-.008-.001c-.003 0-.006.002-.009.004Z"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Nome do Componente -->
+      <h2 class="custom-node__name">{{ data.label }}</h2>
+
+      <!-- Botão para Adicionar Comentário -->
+      <button
+        class="custom-node__btn custom-node__btn--add-comment"
+        aria-label="Adicionar Comentário"
+        (click)="addComment()"
+      >
+        <svg fill="none" viewBox="0 0 16 16" class="icon _size-medium">
+          <path
+            d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7a.75.75 0 0 1 0 1.5h-7a.75.75 0 0 1-.75-.75Zm.75 2.25h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1 0-1.5Z"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Botão para Minimizar/Expandir -->
+      <button
+        class="custom-node__btn custom-node__btn--minimize"
+        aria-label="Minimizar"
+        (click)="toggleCollapse()"
+      >
+        <svg
+          *ngIf="!data.isCollapsed"
+          fill="none"
+          viewBox="0 0 16 16"
+          class="icon"
+        >
+          <path
+            d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"
+          ></path>
+        </svg>
+        <svg
+          *ngIf="data.isCollapsed"
+          fill="none"
+          viewBox="0 0 16 16"
+          class="icon"
+        >
+          <path
+            d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Botão para Salvar -->
+      <button
+        class="custom-node__btn custom-node__btn--save"
+        aria-label="Salvar"
+        (click)="save()"
+      >
+        <svg viewBox="0 0 16 16" class="icon">
+          <path
+            d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"
+          ></path>
+          <path
+            d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Botão de Ferramentas Adicionais -->
+      <button
+        class="custom-node__btn custom-node__btn--tools"
+        aria-label="Ferramentas"
+        (click)="openTools()"
+      >
+        <svg fill="none" viewBox="0 0 16 16" class="icon">
+          <path
+            d="M3 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM6.5 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM13 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"
+          ></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Conteúdo Colapsável -->
+    <section
+      class="custom-node__content"
+      #contentSection
+      [class.collapsed]="data.isCollapsed"
+    >
+    <div class="container mt-4">
+      <form #myForm="ngForm">
+        <!-- ID -->
+        <div class="mb-3">
+          <label for="id" class="form-label">ID</label>
+          <input
+            type="text"
+            id="id"
+            name="id"
+            class="form-control"
+            [(ngModel)]="data.formData.id"
+            required
+          />
+        </div>
+
+        <!-- Name -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            [(ngModel)]="data.formData.name"
+            required
+          />
+        </div>
+
+        <!-- Channel -->
+        <fieldset class="border p-3 mb-4">
+          <legend class="w-auto px-2">Channel</legend>
+          <div class="mb-3">
+            <label for="channel-id" class="form-label">Channel ID</label>
+            <input
+              type="text"
+              id="channel-id"
+              name="channel.id"
+              class="form-control"
+              [(ngModel)]="data.formData.channel.id"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="channel-name" class="form-label">Channel Name</label>
+            <input
+              type="text"
+              id="channel-name"
+              name="channel.name"
+              class="form-control"
+              [(ngModel)]="data.formData.channel.name"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="channel-description" class="form-label">Description</label>
+            <input
+              type="text"
+              id="channel-description"
+              name="channel.descrition"
+              class="form-control"
+              [(ngModel)]="data.formData.channel.descrition"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="channel-creation-date" class="form-label">Creation Date</label>
+            <input
+              type="date"
+              id="channel-creation-date"
+              name="channel.creationDate"
+              class="form-control"
+              [(ngModel)]="data.formData.channel.creationDate"
+            />
+          </div>
+        </fieldset>
+
+        <!-- Description -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            class="form-control"
+            [(ngModel)]="data.formData.description"
+          ></textarea>
+        </div>
+
+        <!-- Status -->
+        <div class="mb-3">
+          <label for="status" class="form-label">Status</label>
+          <input
+            type="text"
+            id="status"
+            name="status"
+            class="form-control"
+            [(ngModel)]="data.formData.status"
+          />
+        </div>
+
+        <!-- Version -->
+        <div class="mb-3">
+          <label for="version" class="form-label">Version</label>
+          <input
+            type="text"
+            id="version"
+            name="version"
+            class="form-control"
+            [(ngModel)]="data.formData.version"
+          />
+        </div>
+
+        <!-- Priority -->
+        <div class="mb-3">
+          <label for="priority" class="form-label">Priority</label>
+          <input
+            type="number"
+            id="priority"
+            name="priority"
+            class="form-control"
+            [(ngModel)]="data.formData.priority"
+          />
+        </div>
+
+        <!-- Domain -->
+        <fieldset class="border p-3 mb-4">
+          <legend class="w-auto px-2">Domain</legend>
+          <div class="mb-3">
+            <label for="domain-id" class="form-label">Domain ID</label>
+            <input
+              type="text"
+              id="domain-id"
+              name="domain.id"
+              class="form-control"
+              [(ngModel)]="data.formData.domain.id"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="domain-name" class="form-label">Domain Name</label>
+            <input
+              type="text"
+              id="domain-name"
+              name="domain.name"
+              class="form-control"
+              [(ngModel)]="data.formData.domain.name"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="domain-description" class="form-label">Description</label>
+            <input
+              type="text"
+              id="domain-description"
+              name="domain.descrition"
+              class="form-control"
+              [(ngModel)]="data.formData.domain.descrition"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="domain-creation-date" class="form-label">Creation Date</label>
+            <input
+              type="date"
+              id="domain-creation-date"
+              name="domain.creationDate"
+              class="form-control"
+              [(ngModel)]="data.formData.domain.creationDate"
+            />
+          </div>
+        </fieldset>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">
+          Submit
+        </button>
+      </form>
+    </div>
+
+    </section>
+  </article>
+
+  <!-- Socket de Saída -->
+  <div
+    class="socket socket-output"
+    refComponent
+    *ngIf="data.getOutputs().length > 0"
+    [data]="{
+      type: 'socket',
+      side: 'output',
+      key: 'output',
+      nodeId: data.id,
+      payload: null
+    }"
+    [emit]="emit"
+    data-testid="output-socket"
+  >
+    <span class="socket-label"></span>
+  </div>
+</div>

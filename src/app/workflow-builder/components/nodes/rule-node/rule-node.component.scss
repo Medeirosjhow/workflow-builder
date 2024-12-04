@@ -1,0 +1,103 @@
+.custom-node {
+  width: 384px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: grab;
+  padding: 8px;
+  transition: outline 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(55, 55, 55, 0.06);
+  outline: 1px solid rgba(0, 0, 0, 0.05);
+  max-height: 1024px;
+
+  &:hover {
+    outline: 2px solid rgba(96, 165, 250, 0.4);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__name {
+    flex: 1;
+    margin: 0 8px;
+    font-size: 1.2em;
+  }
+
+  &__btn {
+    padding: 4px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  &__tooltip {
+    background-color: transparent;
+    border: none;
+  }
+
+  &__content {
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    max-height: 500px; /* Valor grande para permitir expansão */
+    padding: 8px;
+
+    &.collapsed {
+      max-height: 0;
+      padding: 0 8px;
+    }
+  }
+}
+
+/* Ícones */
+.icon {
+  fill: #808080;
+  width: 16px;
+  height: 16px;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.socket {
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+
+  &-input {
+    left: -25px;
+  }
+
+  &-output {
+    right: -25px;
+  }
+
+  .socket-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+fieldset {
+  border-radius: 0.25rem;
+  border: 1px solid #ddd;
+}
+legend {
+  font-size: 1rem;
+  font-weight: bold;
+}
